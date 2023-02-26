@@ -1,0 +1,12 @@
+POST http://localhost:3003/api/blogs
+content-type: application/json
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5c2VybmFtZSI6Im1sdXVra2FpIiwiaW
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5c2VybmFtZSI6Im1sdXVra2FpIiwiaW
+
+{
+    "title": "Paljon rahaa",
+    "author": "Rapu",
+    "url": "joku/jkiva",
+    "likes": "99",
+    //"userId": "63fb2ca4068033548d4e30db"
+}

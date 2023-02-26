@@ -1,43 +1,63 @@
-const http = require('http')
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
+const app = require('./app')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 
-const blogSchema = mongoose.Schema({
-  title: String,
-  author: String,
-  url: String,
-  likes: Number
+
+app.listen(config.PORT, () => {
+    logger.info(`Server running on port ${config.PORT}`)
 })
 
-const Blog = mongoose.model('Blog', blogSchema)
+/*
+//const http = require('http')
+const express = require('express')
+const app = express()
+const app = require('./app')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 
-const mongoUrl = 'mongodb://localhost/bloglist'
-mongoose.connect(mongoUrl)
+app.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`)
+})
 
+
+const logger = require('./utils/logger')
+const morgan = require('morgan')
+const cors = require('cors')
+const config = require('./utils/config')
+const Blog = require('./models/blog')
+
+//Jotta frontend pääsee kiinni backendiin
 app.use(cors())
+
+
+//loggeri käyttöön
+app.use(morgan('tiny'))
+
+//Jotta päästään dataan kiinni
 app.use(express.json())
 
+//staattisen sisällön esittämiseen
+app.use(express.static('build'))
+
 app.get('/api/blogs', (request, response) => {
-  Blog
-    .find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
+    Blog
+        .find({})
+        .then(blogs => {
+            response.json(blogs)
+        })
 })
 
 app.post('/api/blogs', (request, response) => {
-  const blog = new Blog(request.body)
+    const blog = new Blog(request.body)
 
-  blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
-    })
+    blog
+        .save()
+        .then(result => {
+            response.status(201).json(result)
+        })
 })
 
 const PORT = 3003
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+    logger.info(`Server running on port ${config.PORT}`)
+}) */

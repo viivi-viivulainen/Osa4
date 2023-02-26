@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/users
+content-type: application/json
+
+{
+    "username": "Johtaja_Rapulainen",
+    "name": "Einari Rapu",
+    "blogs": ["63fb2665c2aaae7cc873c57b"],
+    "password": "ra"
+    //"password": "raharaharaha"
+}
